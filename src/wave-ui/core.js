@@ -6,6 +6,11 @@ import { injectColorsCSSInDOM, injectCSSInDOM } from './utils/dynamic-css'
 import './scss/index.scss'
 
 let mounted = false
+
+/**
+ * detect the OS theme, if its dark or light mode
+ * @param {Object} $waveui 
+ */
 const detectOSDarkMode = $waveui => {
   const matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
   $waveui.preferredTheme = matchMedia.matches ? 'dark' : 'light'
@@ -100,8 +105,8 @@ export default class WaveUI {
           const { config } = $waveui
 
           // Add the .w-app class where defined by user or at the root.
-          const wApp = document.querySelector(config.on) || document.body
-          wApp.classList.add('w-app')
+          const wApp = document.querySelector(config.on) || document.body;
+          wApp.classList.add('w-app');
 
           if (config.theme === 'auto') detectOSDarkMode($waveui) // Also switches the theme.
           else $waveui.switchTheme(config.theme, true)
