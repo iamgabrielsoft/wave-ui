@@ -15,7 +15,7 @@ class Logger {
 
     constructor(options) {
         this.options = Object.assign({
-            logLevel: process.argv.includes('--debug') ? 4 : 3
+            logLevel: process.argv ? 4 : 3
         }, options); 
     }
 
