@@ -163,7 +163,7 @@
  * @todo: (Column Resizing) Recalc. on browser resize.
  */
 
-import { consoleError } from '../utils/console'
+import logger, { consoleError } from '../utils/console'
 
 // When column resizing is on, this is the minimum cell width that we can resize to.
 const minColumnWidth = 15
@@ -550,37 +550,37 @@ export default {
   },
 
   created () {
-    if (!this.sort) this.activeSorting = []
+    if (!this.sort) this.activeSorting = [];
     else this.activeSorting = Array.isArray(this.sort) ? this.sort : [this.sort]
 
     if ((this.expandedRows || []).length) this.expandedRowsInternal = this.expandedRows
     if ((this.selectedRows || []).length) this.selectedRowsInternal = this.selectedRows
 
-    if (this.pagination) this.updatePaginationConfig()
+    if (this.pagination) this.updatePaginationConfig();
   },
 
   watch: {
     sort (sorting) {
-      if (!sorting) this.activeSorting = []
-      else this.activeSorting = Array.isArray(sorting) ? sorting : [sorting]
+      if (!sorting) this.activeSorting = [];
+      else this.activeSorting = Array.isArray(sorting) ? sorting : [sorting];
     },
 
     expandableRows (value) {
-      if (!value) this.expandedRowsInternal = []
-      else if (value.toString() === '1') this.expandedRowsInternal = this.expandedRowsInternal.slice(0, 1)
+      if (!value) this.expandedRowsInternal = []; 
+      else if (value.toString() === '1') this.expandedRowsInternal = this.expandedRowsInternal.slice(0, 1);
     },
 
     expandedRows (array) {
-      this.expandedRowsInternal = Array.isArray(array) && array.length ? this.expandedRows : []
+      this.expandedRowsInternal = Array.isArray(array) && array.length ? this.expandedRows : [];
     },
 
     selectableRows (value) {
       if (!value) this.selectedRowsInternal = []
-      else if (value.toString() === '1') this.selectedRowsInternal = this.selectedRowsInternal.slice(0, 1)
+      else if (value.toString() === '1') this.selectedRowsInternal = this.selectedRowsInternal.slice(0, 1);
     },
 
     selectedRows (array) {
-      this.selectedRowsInternal = Array.isArray(array) && array.length ? this.selectedRows : []
+      this.selectedRowsInternal = Array.isArray(array) && array.length ? this.selectedRows : [];
     }
   }
 }
